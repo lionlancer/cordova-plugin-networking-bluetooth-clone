@@ -38,6 +38,7 @@ import android.content.pm.PackageManager;
 import android.Manifest;
 import android.os.ParcelUuid;
 import android.util.Log;
+import android.text.TextUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -521,7 +522,7 @@ public class NetworkingBluetooth extends CordovaPlugin {
 					multipartMessages.add(new PluginResult(PluginResult.Status.OK, socketId));
 					multipartMessages.add(new PluginResult(PluginResult.Status.OK, data));
 					
-					Log.d(TAG, "multipartMessages: " + String.join(", ", multipartMessages));
+					Log.d(TAG, "multipartMessages: " + TextUtils.join(", ", multipartMessages));
 					
 					
 					pluginResult = new PluginResult(PluginResult.Status.OK, multipartMessages);
