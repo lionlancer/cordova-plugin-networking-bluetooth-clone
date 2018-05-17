@@ -521,7 +521,7 @@ public class NetworkingBluetooth extends CordovaPlugin {
 					multipartMessages.add(new PluginResult(PluginResult.Status.OK, socketId));
 					multipartMessages.add(new PluginResult(PluginResult.Status.OK, data));
 					
-					Log.d(TAG, "multipartMessages: " + ArrayList.toString(multipartMessages));
+					Log.d(TAG, "multipartMessages: " + TextUtils.join(", ", multipartMessages));
 					
 					
 					pluginResult = new PluginResult(PluginResult.Status.OK, multipartMessages);
