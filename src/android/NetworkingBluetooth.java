@@ -63,6 +63,11 @@ public class NetworkingBluetooth extends CordovaPlugin {
 		public byte[] mData;
 
 		public SocketSendData(CallbackContext callbackContext, BluetoothSocket socket, byte[] data) {
+			
+			Log.d(TAG, "Send Data:");
+			Log.d(TAG, "socket: " + socket);
+			Log.d(TAG, "data: " + Arrays.toString(data));
+			
 			this.mCallbackContext = callbackContext;
 			this.mSocket = socket;
 			this.mData = data;
@@ -298,6 +303,12 @@ public class NetworkingBluetooth extends CordovaPlugin {
 		} else if (action.equals("send")) {
 			int socketId = args.getInt(0);
 			byte[] data = args.getArrayBuffer(1);
+			
+			Log.d(TAG, "Main Send Data:");
+			Log.d(TAG, "socketId: " + socketId);
+			Log.d(TAG, "data: " + Arrays.toString(data));
+			
+			
 			BluetoothSocket socket = this.mClientSockets.get(socketId);
 			if (socket != null) {
 				try {
@@ -493,10 +504,19 @@ public class NetworkingBluetooth extends CordovaPlugin {
 
 			while (socket.isConnected()) {
 				bytesRead = stream.read(readBuffer);
+				
 				if (bytesRead < 0) {
 					throw new IOException("Disconnected");
 				} else if (bytesRead > 0) {
 					data = Arrays.copyOf(readBuffer, bytesRead);
+					
+					Log.d(TAG, "Receive Data:");
+					Log.d(TAG, "socketId: " + socketId);
+					Log.d(TAG, "readBuffer: " + Arrays.toString(readBuffer));
+					Log.d(TAG, "bytesRead: " + bytesRead);
+					Log.d(TAG, "data: " + Arrays.toString(data));
+					
+					
 					multipartMessages = new ArrayList<PluginResult>();
 					multipartMessages.add(new PluginResult(PluginResult.Status.OK, socketId));
 					multipartMessages.add(new PluginResult(PluginResult.Status.OK, data));
