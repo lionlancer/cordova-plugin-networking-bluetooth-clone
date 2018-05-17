@@ -604,7 +604,11 @@ public class NetworkingBluetooth extends CordovaPlugin {
 				sendData = this.mSendQueue.take();
 
 				try {
+					String data = new String(sendData.mData);
+					Log.d(TAG, "sending byte array: " + sendData.mdata);
+					Log.d(TAG, "sending string: " + data);
 					sendData.mSocket.getOutputStream().write(sendData.mData);
+					sendData.mSocket.getOutputStream().write(data);
 					sendData.mCallbackContext.success(sendData.mData.length);
 				} catch (IOException e) {
 					sendData.mCallbackContext.error(e.getMessage());
