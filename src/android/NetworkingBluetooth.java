@@ -521,10 +521,14 @@ public class NetworkingBluetooth extends CordovaPlugin {
 					Log.d(TAG, "bytesRead: " + bytesRead);
 					Log.d(TAG, "data: " + Arrays.toString(data));
 					
-					JSONObject message = {
-						"socketId": socketId,
-						"data": data
-					};
+					//JSONObject message = {
+					//	"socketId": socketId,
+					//	"data": data
+					//};
+					
+					JSONObject message = new JSONObject();
+					message.put("socketId", socketId);
+					message.put("data", data);
 					
 					//multipartMessages = new ArrayList<PluginResult>();
 					//multipartMessages.add(new PluginResult(PluginResult.Status.OK, socketId));
