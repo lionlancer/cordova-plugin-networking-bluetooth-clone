@@ -63,6 +63,8 @@ exports.close = function (socketId, success, error) {
 };
 
 exports.send = function (socketId, data, success, error) {
+	console.log("from NetworkingBluetooth.js: socketId: ", socketId);
+	console.log("from NetworkingBluetooth.js: data: ", data);
 	exec(success, error, 'NetworkingBluetooth', 'send', [socketId, data]);
 };
 

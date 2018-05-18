@@ -306,8 +306,9 @@ public class NetworkingBluetooth extends CordovaPlugin {
 			byte[] data = args.getArrayBuffer(1);
 			
 			Log.d(TAG, "Main Send Data:");
+			
 			Log.d(TAG, "socketId: " + socketId);
-			Log.d(TAG, "data: " + Arrays.toString(data));
+			Log.d(TAG, "data to byte array: " + Arrays.toString(data));
 			
 			
 			BluetoothSocket socket = this.mClientSockets.get(socketId);
@@ -614,9 +615,12 @@ public class NetworkingBluetooth extends CordovaPlugin {
 				sendData = this.mSendQueue.take();
 
 				try {
-					String data = new String(sendData.mData);
-					Log.d(TAG, "sending byte array: " + sendData.mData);
-					Log.d(TAG, "sending string: " + data);
+					String data = new String(sendData.mData, "UTF-8");
+					String data2 = new String(sendData.mData);
+					Log.d(TAG, "sending byte array: " + Arrays.toString(sendData.mData));
+					Log.d(TAG, "sending byte array (string): " + sendData.mData);
+					Log.d(TAG, "sending converted string (UTF-8): " + data);
+					Log.d(TAG, "sending converted string (non-UTF-8): " + data2);
 					sendData.mSocket.getOutputStream().write(sendData.mData);
 					sendData.mCallbackContext.success(sendData.mData.length);
 				} catch (IOException e) {
