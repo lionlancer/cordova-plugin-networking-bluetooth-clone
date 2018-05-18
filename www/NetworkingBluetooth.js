@@ -99,7 +99,8 @@ channel.onCordovaReady.subscribe(function() {
 	exec(function (deviceInfo) {
 		exports.onDeviceAdded.fire(deviceInfo);
 	}, null, 'NetworkingBluetooth', 'registerDeviceAdded', []);
-
+	
+	/*
 	exec(function (socketId, data) {
 		console.log("from NetworkingBluetooth.js: socketId: ", socketId);
 		console.log("from NetworkingBluetooth.js: data: ", data);
@@ -108,7 +109,18 @@ channel.onCordovaReady.subscribe(function() {
 			data: data
 		});
 	}, null, 'NetworkingBluetooth', 'registerReceive', []);
+	*/
+	
+	exec(function (message) {
+		console.log("from NetworkingBluetooth.js: socketId: ", message.socketId);
+		console.log("from NetworkingBluetooth.js: data: ", message.data);
+		exports.onReceive.fire({
+			socketId: socketId,
+			data: data
+		});
+	}, null, 'NetworkingBluetooth', 'registerReceive', []);
 
+	
 	exec(function (info) {
 		exports.onReceiveError.fire(info);
 	}, null, 'NetworkingBluetooth', 'registerReceiveError', []);

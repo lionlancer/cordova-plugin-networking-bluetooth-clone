@@ -521,21 +521,26 @@ public class NetworkingBluetooth extends CordovaPlugin {
 					Log.d(TAG, "bytesRead: " + bytesRead);
 					Log.d(TAG, "data: " + Arrays.toString(data));
 					
+					JSONObject message = {
+						"socketId": socketId,
+						"data": data
+					};
 					
-					multipartMessages = new ArrayList<PluginResult>();
-					multipartMessages.add(new PluginResult(PluginResult.Status.OK, socketId));
-					multipartMessages.add(new PluginResult(PluginResult.Status.OK, data));
+					//multipartMessages = new ArrayList<PluginResult>();
+					//multipartMessages.add(new PluginResult(PluginResult.Status.OK, socketId));
+					//multipartMessages.add(new PluginResult(PluginResult.Status.OK, data));
 					
-					Log.d(TAG, "multipartMessages: " + TextUtils.join(", ", multipartMessages));
-					
-					
-					pluginResult = new PluginResult(PluginResult.Status.OK, multipartMessages);
-					pluginResult.setKeepCallback(true);
-					
-					Log.d(TAG, "pluginResult: " + pluginResult.toString());
+					//Log.d(TAG, "multipartMessages: " + TextUtils.join(", ", multipartMessages));
 					
 					
-					this.mContextForReceive.sendPluginResult(pluginResult);
+					//pluginResult = new PluginResult(PluginResult.Status.OK, multipartMessages);
+					//pluginResult.setKeepCallback(true);
+					
+					//Log.d(TAG, "pluginResult: " + pluginResult.toString());
+					
+					
+					//this.mContextForReceive.sendPluginResult(pluginResult);
+					this.mContextForReceive.success(message);
 					
 				}
 			}
