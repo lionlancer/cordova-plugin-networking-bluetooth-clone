@@ -115,8 +115,8 @@ channel.onCordovaReady.subscribe(function() {
 		console.log("from NetworkingBluetooth.js: socketId: ", message.socketId);
 		console.log("from NetworkingBluetooth.js: data: ", message.data);
 		exports.onReceive.fire({
-			socketId: socketId,
-			data: data
+			socketId: message.socketId,
+			data: message.data
 		});
 	}, null, 'NetworkingBluetooth', 'registerReceive', []);
 

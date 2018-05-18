@@ -514,12 +514,14 @@ public class NetworkingBluetooth extends CordovaPlugin {
 					throw new IOException("Disconnected");
 				} else if (bytesRead > 0) {
 					data = Arrays.copyOf(readBuffer, bytesRead);
+					String str = new String(data, "UTF-8");
 					
 					Log.d(TAG, "Receive Data:");
 					Log.d(TAG, "socketId: " + socketId);
 					Log.d(TAG, "readBuffer: " + Arrays.toString(readBuffer));
 					Log.d(TAG, "bytesRead: " + bytesRead);
 					Log.d(TAG, "data: " + Arrays.toString(data));
+					Log.d(TAG, "data (utf-8): " + str);
 					
 					//JSONObject message = {
 					//	"socketId": socketId,
@@ -529,7 +531,7 @@ public class NetworkingBluetooth extends CordovaPlugin {
 					try{
 						JSONObject message = new JSONObject();
 						message.put("socketId", socketId);
-						message.put("data", data);
+						message.put("data", str);
 						this.mContextForReceive.success(message);
 					}catch(Exception e){
 						Log.d(TAG, "Error: " + e.getMessage());
