@@ -536,7 +536,7 @@ public class NetworkingBluetooth extends CordovaPlugin {
 						
 						pluginResult = new PluginResult(PluginResult.Status.OK, message);
 						pluginResult.setKeepCallback(true);
-						this.mContextForReceiveError.sendPluginResult(pluginResult);
+						this.mContextForReceive.sendPluginResult(pluginResult);
 						
 					}catch(Exception e){
 						//Log.d(TAG, "Error: " + e.getMessage());
