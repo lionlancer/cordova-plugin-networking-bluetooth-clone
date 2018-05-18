@@ -542,12 +542,12 @@ public class NetworkingBluetooth extends CordovaPlugin {
 						//Log.d(TAG, "Error: " + e.getMessage());
 						//this.mContextForReceive.error(e.getMessage());
 						
-						JSONObject info = new JSONObject();
-						info.put("socketId", socketId);
-						info.put("errorMessage", e.getMessage());
-						pluginResult = new PluginResult(PluginResult.Status.OK, info);
-						pluginResult.setKeepCallback(true);
-						this.mContextForReceiveError.sendPluginResult(pluginResult);
+						//JSONObject info = new JSONObject();
+						//info.put("socketId", socketId);
+						//info.put("errorMessage", e.getMessage());
+						//pluginResult = new PluginResult(PluginResult.Status.OK, info);
+						//pluginResult.setKeepCallback(true);
+						//this.mContextForReceiveError.sendPluginResult(pluginResult);
 					}
 					
 					//multipartMessages = new ArrayList<PluginResult>();
