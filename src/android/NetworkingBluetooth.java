@@ -399,7 +399,7 @@ public class NetworkingBluetooth extends CordovaPlugin {
 
 		return deviceInfo;
 	}
-
+	
 	public void prepareActivity(String action, CordovaArgs args, CallbackContext callbackContext, Intent intent, int requestCode) {
 		// If there already is another activity with this request code, call the error callback in order
 		// to notify that the activity has been cancelled
@@ -532,10 +532,22 @@ public class NetworkingBluetooth extends CordovaPlugin {
 						JSONObject message = new JSONObject();
 						message.put("socketId", socketId);
 						message.put("data", str);
-						this.mContextForReceive.success(message);
+						//this.mContextForReceive.success(message);
+						
+						pluginResult = new PluginResult(PluginResult.Status.OK, message);
+						pluginResult.setKeepCallback(true);
+						this.mContextForReceiveError.sendPluginResult(pluginResult);
+						
 					}catch(Exception e){
-						Log.d(TAG, "Error: " + e.getMessage());
-						this.mContextForReceive.error(e.getMessage());
+						//Log.d(TAG, "Error: " + e.getMessage());
+						//this.mContextForReceive.error(e.getMessage());
+						
+						JSONObject info = new JSONObject();
+						info.put("socketId", socketId);
+						info.put("errorMessage", e.getMessage());
+						pluginResult = new PluginResult(PluginResult.Status.OK, info);
+						pluginResult.setKeepCallback(true);
+						this.mContextForReceiveError.sendPluginResult(pluginResult);
 					}
 					
 					//multipartMessages = new ArrayList<PluginResult>();
