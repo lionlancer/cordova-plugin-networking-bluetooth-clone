@@ -303,11 +303,14 @@ public class NetworkingBluetooth extends CordovaPlugin {
 			return true;
 		} else if (action.equals("send")) {
 			int socketId = args.getInt(0);
-			byte[] data = args.getArrayBuffer(1);
+			//byte[] data = args.getArrayBuffer(1);
+			String str = args.getString(1);
+			byte[] data = str.getBytes();
 			
 			Log.d(TAG, "Main Send Data:");
 			
 			Log.d(TAG, "socketId: " + socketId);
+			Log.d(TAG, "data: " + str);
 			Log.d(TAG, "data to byte array: " + Arrays.toString(data));
 			
 			
