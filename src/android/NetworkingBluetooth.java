@@ -526,9 +526,15 @@ public class NetworkingBluetooth extends CordovaPlugin {
 					//	"data": data
 					//};
 					
-					JSONObject message = new JSONObject();
-					message.put("socketId", socketId);
-					message.put("data", data);
+					try{
+						JSONObject message = new JSONObject();
+						message.put("socketId", socketId);
+						message.put("data", data);
+						this.mContextForReceive.success(message);
+					}catch(Exception e){
+						Log.d(TAG, "Error: " + e.getMessage());
+						this.mContextForReceive.error(e.getMessage());
+					}
 					
 					//multipartMessages = new ArrayList<PluginResult>();
 					//multipartMessages.add(new PluginResult(PluginResult.Status.OK, socketId));
@@ -544,7 +550,7 @@ public class NetworkingBluetooth extends CordovaPlugin {
 					
 					
 					//this.mContextForReceive.sendPluginResult(pluginResult);
-					this.mContextForReceive.success(message);
+					
 					
 				}
 			}
